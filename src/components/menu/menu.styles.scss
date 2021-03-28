@@ -1,0 +1,69 @@
+@import "../../theme/variables.scss";
+
+.menu {
+  position: relative;
+  height: 10vh;
+  width: 100vw;
+  background-color: $primary-color;
+  display: flex;
+  align-items: center;
+
+  &__actions {
+    width: 100%;
+    float: left;
+    margin: $primary-margin;
+    &--logo {
+      width: 9em;
+      height: auto;
+    }
+
+    &--search {
+      border: none;
+      outline: none;
+      border-radius: 50px;
+      width: 40vw;
+      height: 3.8em;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &--search::placeholder {
+      padding-left: 2em;
+      opacity: 0.4;
+      font-size: 1em;
+    }
+
+    &__account {
+      margin: 0em 12em 0 12em;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(-50%, -50%);
+      &--login {
+        color: white;
+        float: left;
+        margin: 0;
+        padding-right: 5em;
+        position: absolute;
+        top: 50%;
+        // left: 10%;
+        transform: translate(-50%, -50%);
+      }
+      &--favorites {
+        margin-right: 1em;
+      }
+    }
+  }
+}
+
+.menu-icon {
+  width: 1.3em;
+  height: auto;
+}
+
+.clickable {
+  cursor: pointer;
+}
