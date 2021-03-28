@@ -1,0 +1,65 @@
+@import "./theme/variables.scss";
+
+body {
+  margin: 0;
+  font-family: $font-primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.container {
+  margin: $primary-margin;
+}
+
+.container-sm {
+  margin: $primary-margin-sm;
+}
+
+.font-title {
+  font-family: $font-title;
+}
+
+// buttons
+
+.primary-button {
+  font: $font-primary;
+  font-weight: lighter;
+  color: white;
+  background-color: $primary-btn-color;
+  box-shadow: none;
+  height: 3em;
+  width: auto;
+  outline: none;
+  border: none;
+  padding: 0 1em;
+}
+
+// margin => 0 0 0 0 === top, right, bottom, left
+.m-0 {
+  margin: 0;
+}
+
+.mt-1 {
+  margin: 1em 0 0 0;
+}
+
+.mr-1 {
+  margin: 0 1em 0 0;
+}
+
+.mr-2 {
+  margin: 0 2em 0 0;
+}
+
+.mr-3 {
+  margin: 0 3em 0 0;
+}
+
+.mb-1 {
+  margin: 0 0 1em 0;
+}
