@@ -9,7 +9,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const { errorLogin, loadingIndicator } = useContext(Context);
+  const { loadingIndicator, errorLogin } = useContext(Context);
   const [loginError, setLoginError] = errorLogin;
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = loadingIndicator;
@@ -40,13 +40,17 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     setLoading(true);
+
+    if (currentUser) {
+      const userRef = db.collection("users").doc(currentUser.uid);
+
+      userRef.get().then((doc) => {
+        const user = doc.data();
+        setCurrentUser(user);
+      });
+    }
+
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        const userRef = db.collection("users").doc(user.uid);
-        userRef.get().then((doc) => {
-          const user = doc.data();
-        });
-      }
       setCurrentUser(user);
       setLoading(false);
     });

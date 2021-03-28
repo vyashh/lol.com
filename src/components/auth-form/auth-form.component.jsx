@@ -1,7 +1,26 @@
-import React from "react";
+import { useRef, useEffect, useState } from "react";
 import "./auth-form.styles.scss";
+import { useAuth } from "../../providers/AuthProvider";
+import { useHistory } from "react-router-dom";
 
 export default function AuthForm() {
+  const { login, logout, currentUser } = useAuth();
+  const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      await login(email, password);
+
+      history.push("/");
+    } catch {
+      console.log("error");
+    }
+  };
+
   return (
     <div>
       <div className="login">
@@ -16,6 +35,7 @@ export default function AuthForm() {
                     className="form-input--login"
                     type="email"
                     name="email"
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="E-mailadres"
                   />
                 </div>
@@ -24,11 +44,17 @@ export default function AuthForm() {
                     className="form-input--login"
                     type="password"
                     name="password"
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="Wachtwoord"
                   />
                 </div>
                 <div className="auth-form__login--actions mt-1">
-                  <button className="primary-button mr-1">Inloggen</button>
+                  <button className="primary-button mr-1" onClick={handleLogin}>
+                    Inloggen
+                  </button>
+                  <button className="primary-button mr-1" onClick={logout}>
+                    Loguit
+                  </button>
                   <p>Wachtwoord vergeten?</p>
                 </div>
               </form>
@@ -46,6 +72,7 @@ export default function AuthForm() {
               className="form-input--register"
               type="email"
               name="email"
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="E-mailadres"
             />
             <button className="primary-button mt-1">

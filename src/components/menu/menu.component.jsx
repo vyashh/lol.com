@@ -3,8 +3,11 @@ import Logo from "../../assets/img/logo.svg";
 import CartIcon from "../../assets/img/cart.svg";
 import FavoritesIcon from "../../assets/img/favorites.svg";
 import { useHistory } from "react-router-dom";
+import { useAuth } from "../../providers/AuthProvider";
 
 export default function Menu() {
+  const { currentUser } = useAuth();
+
   const history = useHistory();
 
   return (
@@ -27,7 +30,7 @@ export default function Menu() {
             className="menu__actions__account--login clickable"
             onClick={() => history.push("/login")}
           >
-            Inloggen
+            {currentUser ? `Welcome ${currentUser.email}` : "Login"}
           </p>
 
           <img
